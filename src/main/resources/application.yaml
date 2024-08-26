@@ -1,0 +1,83 @@
+server:
+  port: 8086
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: application/json
+
+management:
+  endpoints:
+    web:
+      base-path: /_
+      path-mapping:
+        health: health
+        info: info
+        metrics: metrics
+        configprops: configprops
+        trace: trace
+        liveness: liveness
+        shutdown: shutdown
+        env: env
+        loggers: loggers
+        beans: beans
+        dump: dump
+
+spring:
+  application:
+    name: Nautilus - Authorize Service
+  datasource:
+    primary:
+      jdbcUrl: jdbc:postgresql://localhost:5443/nautilus
+      username: root
+      password: admin123
+      driver-class-name: org.postgresql.Driver
+      jpa:
+        properties:
+          hibernate:
+            show-sql: true
+            format-sql: true
+    secondary:
+      jdbcUrl: jdbc:postgresql://localhost:5443/yorick
+      username: root
+      password: admin123
+      driver-class-name: org.postgresql.Driver
+      jpa:
+        properties:
+          hibernate:
+            show-sql: true
+            format-sql: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    url: jdbc:postgresql://localhost:5443/nautilus
+    user: root
+    password: admin123
+    baseline-on-migrate: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8084/eureka/
+
+logging:
+  level:
+    root: INFO
+    vn.com.lol: DEBUG
+    org.springframework.jdbc: DEBUG
+    org.springframework.security: TRACE
+    org.hibernate.sql: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+security:
+  jwt:
+    secret-key: "89f0d1b8d71f4b5ea4c6e7a53b7fecd8c4e78a9d51f8abef36d5e5b5d59c8f2b"
+    expiration: 1
+    refresh-token:
+      expiration: 1
+
+
