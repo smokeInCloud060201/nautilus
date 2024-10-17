@@ -14,16 +14,16 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
-import vn.com.lol.common.entities.BaseEntity;
-import vn.com.lol.common.utils.JsonUtil;
 import vn.com.lol.nautilus.commons.constant.HibernateConstant;
+import vn.com.lol.nautilus.commons.entity.BaseEntity;
 import vn.com.lol.nautilus.commons.serializer.TokenSettingsDeserializer;
+import vn.com.lol.nautilus.commons.utils.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static vn.com.lol.common.constants.GlobalHibernateConstant.IS_NOT_DELETED;
+import static vn.com.lol.nautilus.commons.constant.HibernateConstant.IS_NOT_DELETED;
 import static vn.com.lol.nautilus.commons.constant.HibernateConstant.Table.SOFT_DELETE_CLIENT;
 
 @Getter

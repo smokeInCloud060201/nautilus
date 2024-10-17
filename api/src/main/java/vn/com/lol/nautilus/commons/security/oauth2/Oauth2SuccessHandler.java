@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.core.AbstractOAuth2Token;
 import org.springframework.security.oauth2.server.authorization.authentication.OAuth2AccessTokenAuthenticationToken;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import vn.com.lol.common.dto.response.BaseResponse;
+import vn.com.lol.nautilus.commons.dto.response.BaseResponse;
 import vn.com.lol.nautilus.modules.auth.dtos.response.AuthenticationResponse;
 
 import java.io.IOException;

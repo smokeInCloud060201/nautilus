@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
-import vn.com.lol.common.exceptions.ResourceNotFoundException;
+import vn.com.lol.nautilus.commons.exception.BadRequestException;
 import vn.com.lol.nautilus.commons.security.basic.JwtUtil;
 import vn.com.lol.nautilus.modules.auth.dtos.request.AuthenticationRequest;
 import vn.com.lol.nautilus.modules.auth.dtos.response.AuthenticationResponse;
@@ -29,12 +29,12 @@ public class AuthServiceImpl implements AuthService {
     private final TokenRepository tokenRepository;
 
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request, HttpServletRequest servletRequest) throws ResourceNotFoundException {
+    public AuthenticationResponse authenticate(AuthenticationRequest request, HttpServletRequest servletRequest) throws BadRequestException {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),
                 request.getPassword()));
 
         User user = userRepository.findByUserName(request.getEmail()).orElseThrow(() -> new
-                ResourceNotFoundException("Not found user"));
+                BadRequestException("Not found user"));
 
         String accessToken = jwtUtil.generateToken(user, servletRequest);
         String refreshToken = jwtUtil.generateRefreshToken(user, servletRequest);
@@ -48,14 +48,14 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public AuthenticationResponse refreshToken(Map<String, String> refreshTokenRequest, HttpServletRequest servletRequest) throws ResourceNotFoundException {
+    public AuthenticationResponse refreshToken(Map<String, String> refreshTokenRequest, HttpServletRequest servletRequest) throws BadRequestException {
         String accessToken = refreshTokenRequest.get("access_token");
         String refreshToken = refreshTokenRequest.get("refresh_token");
 
         Token token = tokenRepository.findByToken(accessToken, refreshToken, TokenType.BASIC)
-                .orElseThrow(() -> new ResourceNotFoundException("Token was not exists"));
+                .orElseThrow(() -> new BadRequestException("Token was not exists"));
 
-        User user = userRepository.findByUserName(token.getUsername()).orElseThrow(() -> new ResourceNotFoundException("Not found user"));
+        User user = userRepository.findByUserName(token.getUsername()).orElseThrow(() -> new BadRequestException("Not found user"));
 
         if (jwtUtil.isTokenValid(refreshToken, user)) {
             String newAccessToken = jwtUtil.generateToken(user, servletRequest);
@@ -70,7 +70,7 @@ public class AuthServiceImpl implements AuthService {
                     .refreshToken(newRefreshToken)
                     .build();
         } else {
-            throw new ResourceNotFoundException("Refresh token is invalid");
+            throw new BadRequestException("Refresh token is invalid");
         }
     }
 

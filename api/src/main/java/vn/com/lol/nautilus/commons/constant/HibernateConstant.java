@@ -3,11 +3,18 @@ package vn.com.lol.nautilus.commons.constant;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import static vn.com.lol.common.constants.GlobalHibernateConstant.Table.SOFT_DELETE_BY_ID_QUERY;
-import static vn.com.lol.common.constants.GlobalHibernateConstant.Table.UPDATE;
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class HibernateConstant {
+
+    public static final String IS_NOT_DELETED = "is_deleted = FALSE";
+    public static final String IS_DELETED = "is_deleted";
+
+    public static final String FILE = "file";
+    public static final String SET = " SET ";
+    public static final String DELETED_BY_ID = " = TRUE WHERE id = ?";
+    public static final String UPDATE = " UPDATE ";
+    public static final String SOFT_DELETE_BY_ID_QUERY = " SET is_deleted = TRUE WHERE id = ?";
+    public static final String SOFT_DELETE_FILE = " UPDATE file SET is_deleted = TRUE WHERE id = ?";
 
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class Table {

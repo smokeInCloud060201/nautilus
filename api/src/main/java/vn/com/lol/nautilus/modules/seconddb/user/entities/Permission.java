@@ -9,13 +9,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLRestriction;
-import vn.com.lol.common.entities.BaseEntity;
 import vn.com.lol.nautilus.commons.constant.HibernateConstant;
+import vn.com.lol.nautilus.commons.entity.BaseEntity;
 
 import java.io.Serializable;
 import java.util.List;
 
-import static vn.com.lol.common.constants.GlobalHibernateConstant.IS_NOT_DELETED;
+import static vn.com.lol.nautilus.commons.constant.HibernateConstant.IS_NOT_DELETED;
 
 
 @Getter

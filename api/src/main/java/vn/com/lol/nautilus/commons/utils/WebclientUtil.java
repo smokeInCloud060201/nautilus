@@ -9,10 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.UriBuilder;
 import reactor.core.publisher.Mono;
-import vn.com.lol.common.dto.request.QueryParam;
-import vn.com.lol.common.dto.request.URLComponent;
+
 
 import java.net.URI;
 import java.util.concurrent.CompletableFuture;
@@ -23,32 +21,6 @@ import java.util.concurrent.CompletableFuture;
 public class WebclientUtil {
 
     private final WebClient client;
-
-    public <R> CompletableFuture<R> getRequest(URLComponent urlComponent, ParameterizedTypeReference<R> responseType) {
-        return client.get().uri(uriBuilder -> {
-                    UriBuilder builder = uriBuilder
-                            .scheme(urlComponent.getScheme())
-                            .host(urlComponent.getHost())
-                            .path(urlComponent.getPath());
-
-                    for (QueryParam queryParam : urlComponent.getQueryParams()) {
-                        builder = builder.queryParam(queryParam.getKey(), queryParam.getValue());
-                    }
-                    return builder.build();
-                }).header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .exchangeToMono(response -> {
-                    if (response.statusCode().is2xxSuccessful()) {
-                        return response.bodyToMono(responseType);
-                    } else {
-                        return response.bodyToMono(String.class).flatMap(error -> {
-                            log.error("Get request ERROR {}", error);
-                            return Mono.error(new RuntimeException(error));
-                        });
-                    }
-                })
-                .toFuture();
-
-    }
 
     public <T, R> CompletableFuture<R> postRequest(String url, T input, ParameterizedTypeReference<R> responseType) {
         return client.post()

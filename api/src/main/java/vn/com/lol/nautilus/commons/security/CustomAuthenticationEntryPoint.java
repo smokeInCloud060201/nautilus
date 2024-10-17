@@ -8,8 +8,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-import vn.com.lol.common.dto.response.BaseResponse;
-import vn.com.lol.common.enums.ExceptionErrorCode;
+import vn.com.lol.nautilus.commons.dto.response.BaseResponse;
+import vn.com.lol.nautilus.commons.enums.ExceptionErrorCode;
+
 
 import java.io.IOException;
 import java.io.OutputStream;

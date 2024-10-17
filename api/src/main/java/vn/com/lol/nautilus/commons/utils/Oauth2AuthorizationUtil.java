@@ -6,7 +6,6 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.security.oauth2.core.OAuth2RefreshToken;
 import org.springframework.security.oauth2.server.authorization.OAuth2Authorization;
-import vn.com.lol.common.utils.JsonUtil;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import vn.com.lol.nautilus.commons.serializer.OAuth2AccessTokenDeserializer;
 import vn.com.lol.nautilus.commons.serializer.OAuth2RefreshTokenDeserializer;

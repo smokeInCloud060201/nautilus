@@ -26,26 +26,9 @@ spring:
   application:
     name: Nautilus - Authorize Service
   datasource:
-    primary:
-      jdbcUrl: jdbc:postgresql://localhost:5443/nautilus
-      username: root
-      password: admin123
-      driver-class-name: org.postgresql.Driver
-      jpa:
-        properties:
-          hibernate:
-            show-sql: true
-            format-sql: true
-    secondary:
-      jdbcUrl: jdbc:postgresql://localhost:5443/yorick
-      username: root
-      password: admin123
-      driver-class-name: org.postgresql.Driver
-      jpa:
-        properties:
-          hibernate:
-            show-sql: true
-            format-sql: true
+    url: jdbc:postgresql://localhost:5443/nautilus
+    username: root
+    password: admin123
   jpa:
     hibernate:
       ddl-auto: validate

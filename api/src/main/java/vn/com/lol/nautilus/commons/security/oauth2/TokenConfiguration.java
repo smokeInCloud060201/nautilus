@@ -22,7 +22,6 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Refr
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenGenerator;
 import org.springframework.util.StringUtils;
-import vn.com.lol.common.enums.EncryptAlgorithmType;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -97,7 +96,7 @@ public class TokenConfiguration {
     private static KeyPair generateRsaKey() {
         KeyPair keyPair;
         try {
-            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(EncryptAlgorithmType.RSA.name());
+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             keyPairGenerator.initialize(2048);
             keyPair = keyPairGenerator.generateKeyPair();
         }

@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
-import vn.com.lol.common.entities.BaseEntity;
 import vn.com.lol.nautilus.commons.constant.HibernateConstant;
+import vn.com.lol.nautilus.commons.entity.BaseEntity;
 import vn.com.lol.nautilus.modules.firstdb.token.enums.TokenType;
 
-import static vn.com.lol.common.constants.GlobalHibernateConstant.IS_NOT_DELETED;
+import static vn.com.lol.nautilus.commons.constant.HibernateConstant.IS_NOT_DELETED;
 import static vn.com.lol.nautilus.commons.constant.HibernateConstant.Table.SOFT_DELETE_TOKEN;
 
 

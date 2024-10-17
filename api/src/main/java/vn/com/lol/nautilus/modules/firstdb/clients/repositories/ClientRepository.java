@@ -2,7 +2,7 @@ package vn.com.lol.nautilus.modules.firstdb.clients.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import vn.com.lol.common.repository.BaseRepository;
+import vn.com.lol.nautilus.commons.repository.BaseRepository;
 import vn.com.lol.nautilus.modules.firstdb.clients.entities.Client;
 
 import java.util.Optional;
